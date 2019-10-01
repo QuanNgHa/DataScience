@@ -59,12 +59,22 @@ cars.iloc[[4]]
 
 ```Python
 # Select both rows & column using loc & iloc
-cars.loc['IN', 'cars_per_cap']
+cars.loc['IN', 'cars_per_cap'] ---> Return as Pandas Series
 cars.iloc[3, 0]
 
-cars.loc[['IN', 'RU'], 'cars_per_cap']
+cars.loc[['IN', 'RU'], 'cars_per_cap']---> Return as Pandas Data Frame
 cars.iloc[[3, 4], 0]
 
 cars.loc[['IN', 'RU'], ['cars_per_cap', 'country']]
 cars.iloc[[3, 4], [0, 1]]
+```
+It's also possible to select only columns with loc and iloc. In both cases, you simply put a slice going from beginning to end in front of the comma
+```Python
+# Select on columns with loc & iloc
+cars.loc[:, 'country']---> Return as Pandas Series
+cars.iloc[:, 1]
+
+cars.loc[:, ['country']]---> Return as Pandas Data Frame
+cars.loc[:, ['country','drives_right']]
+cars.iloc[:, [1, 2]]
 ```
