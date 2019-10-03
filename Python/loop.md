@@ -1,5 +1,6 @@
 # 1. For Loop:
-* enumarate(): to extract both index and value in the list
+## 1.1 Loop over List
+* `enumarate()`: to extract both index and value in the list
 
 ```Python
 # areas list
@@ -15,4 +16,37 @@ for index, area in enumerate(areas) :
     room 3: 20.0
     room 4: 10.75
     room 5: 9.5
+```
+## 1.2 Loop over Dictionary
+
+* `items()` method to loop over a dictionary:
+```Python
+world = { "afghanistan":30.55, 
+          "albania":2.77,
+          "algeria":39.21 }
+
+for key, value in world.items() :
+    print(key + " -- " + str(value))
+```
+
+## 1.3 Loop over Numpy array
+#### 1D Numpy array:
+```Python
+for x in my_array :
+    ...
+```
+#### 2D Numpy array:
+* `items()` method to loop over a 2D Numpy Array:
+```Python
+for x in np.nditer(my_array) :
+    ...
+```
+
+## 1.4 Loop over Pandas Data Frame:
+
+* `iterrows()` method:on every iteration the row label and actual row contents are available:
+
+```Python
+for label, row in brics.iterrows() :
+    ...
 ```
