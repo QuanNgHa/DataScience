@@ -78,3 +78,39 @@ cars.loc[:, ['country']]---> Return as Pandas Data Frame
 cars.loc[:, ['country','drives_right']]
 cars.iloc[:, [1, 2]]
 ```
+# 3. Filtering Pandas DataFrame
+
+```Python
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+```
+**Original Method:**
+```Python
+# Step 1: Extract drives_right column as Series with True value: dr
+#dr = cars['drives_right'] == True
+dr = cars['drives_right']
+
+# Step 2: Use dr to subset cars: sel
+sel = cars[dr]
+```
+**Shortcut:**
+```Python
+sel = cars[cars['drives_right']]
+```
+```
+# Print sel
+print(sel)
+<script.py> output:
+         cars_per_cap        country  drives_right
+    US            809  United States          True
+    RU            200         Russia          True
+    MOR            70        Morocco          True
+    EG             45          Egypt          True
+
+```
+More examples:
+
+```Python
+# Create medium: observations with cars_per_cap between 100 and 500
+medium = cars[np.logical_and(cars["cars_per_cap"]>100, cars["cars_per_cap"]<500)]
