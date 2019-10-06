@@ -59,7 +59,7 @@ plt.show()
 ```
 <img width="392" alt="Screenshot 2019-09-29 at 12 42 48 PM" src="https://user-images.githubusercontent.com/47073386/65826387-ab74e200-e2b6-11e9-9c22-8595196255a8.png">
 
-### Plot 2 Data Frame in the same graph:
+### Plot 2 Data Frames in the Same graph:
 If `df1` and `df2` are two DataFrames you can plot their data together like this:
 
 ```Python
