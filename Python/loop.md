@@ -66,7 +66,7 @@ for lab, row in brics.iterrows() :
     brics.loc[lab, "name_length"] = len(row["country"])
 ```
 
-* Method 2: using .apply()
+* Method 2 [Recommended]: using .apply()
 
 ```Python
 brics["name_length"] = brics["country"].apply(len)
