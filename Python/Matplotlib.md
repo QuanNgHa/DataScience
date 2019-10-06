@@ -59,3 +59,14 @@ plt.show()
 ```
 <img width="392" alt="Screenshot 2019-09-29 at 12 42 48 PM" src="https://user-images.githubusercontent.com/47073386/65826387-ab74e200-e2b6-11e9-9c22-8595196255a8.png">
 
+### Plot 2 Data Frame in the same graph:
+If `df1` and `df2` are two DataFrames you can plot their data together like this:
+
+```Python
+# This makes plots appear in the notebook
+%matplotlib inline
+
+ax = df1.plot(x="col_a", y="col_b", label="df1")
+df2.plot(x="col_a", y="col_b", label="df2", ax=ax)
+```
+<img width="432" alt="Screenshot 2019-10-06 at 10 00 09 PM" src="https://user-images.githubusercontent.com/47073386/66270374-45272b00-e885-11e9-8aa4-71cc33a78ad2.png">
