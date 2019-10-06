@@ -22,6 +22,11 @@ cars = pd.DataFrame(my_dict)
 ```Python
 cars = pd.read_csv('cars.csv', index_col=0)
 ```
+### Parse date
+The `read_csv` method doesn't automatically detect which columns contain dates. You can tell read_csv this by giving a list of the date columns as the optional argument `parse_dates`
+```Python
+my_df = pd.read_csv("datasets/my_data.csv", parse_dates=["date"])
+```
 ### Change Index of Data Frame:
 ```Python
 Specify row labels of cars
