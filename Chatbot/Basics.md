@@ -1,4 +1,4 @@
-### I. asking questions
+### I. Asking questions
 Responding to statements with a question and responding to questions with answers.
 
 ```Python
@@ -13,6 +13,7 @@ def respond(message):
 
 ```
 ### II.  Extracting key phrases: Regular expressions
+#### re.search()
 
 A dictionary called `rules` has already been defined, which matches the following patterns:
 
@@ -54,3 +55,8 @@ print(match_rule(rules, "do you remember your last birthday"))
     Why haven't you been able to forget your last birthday
 
 ```
+#### re.sub(): replace_pronouns
+
+```Python
+ re.sub('you','me', message)
+ ```
