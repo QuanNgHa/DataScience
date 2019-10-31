@@ -104,3 +104,25 @@ send_message("do you think humans should be worried about AI")
     USER : do you think humans should be worried about AI
     BOT : No chance
 ```
+### III. Intents and Entities
+
+#### Intent classification with regex
+```
+The keywords dictionary:
+{'goodbye': ['bye', 'farewell'], 'thankyou': ['thank', 'thx'], 'greet': ['hello', 'hi', 'hey']}
+------------------------------------------------------------
+# Define a dictionary of patterns
+patterns = {}
+
+# Iterate over the keywords dictionary
+for intent, keys in keywords.items():
+    # Create regular expressions and compile them into pattern objects
+    patterns[intent] = re.compile('|'.join(keys))
+    
+# Print the patterns
+print(patterns)
+
+<script.py> output:
+    {'goodbye': re.compile('bye|farewell'), 'greet': re.compile('hello|hi|hey'), 'thankyou': re.compile('thank|thx')}
+```
+
