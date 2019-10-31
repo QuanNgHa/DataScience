@@ -109,3 +109,26 @@ plt.show()
 <img width="313" alt="Screenshot 2019-10-06 at 11 03 46 AM" src="https://user-images.githubusercontent.com/47073386/66263654-082d4b00-e829-11e9-8e6e-5b9598ca9b45.png">
 
 ```
+### 2D Array:
+
+```Python
+
+In [1]: import numpy as np
+In [2]: a = np.array([[2,0],[3,0],[3,1],[5,0],[5,1],[5,2]])
+In [3]: b = np.zeros((6,3), dtype='int32')
+#
+In [4]: b[a[:,0], a[:,1]] = 10
+
+In [5]: b
+Out[5]: 
+array([[ 0,  0,  0],
+       [ 0,  0,  0],
+       [10,  0,  0],
+       [10, 10,  0],
+       [ 0,  0,  0],
+       [10, 10, 10]])
+```
+
+Explanation:
+b[x, y] = z
+where x being the first column of a and y being the second column of a. Thus, choose x = a[:, 0], and y = a[:, 1].
