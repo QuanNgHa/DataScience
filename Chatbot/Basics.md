@@ -203,3 +203,26 @@ send_message("People call me Cassandra")
     USER : People call me Cassandra
     BOT : Hello, People Cassandra!
 ```
+### IV. Word vectors with spaCy
+
+```Python
+import spacy
+# Load the spacy model: nlp
+nlp = spacy.load('en')
+
+# Calculate the length of sentences - sentences is a list of sentence
+n_sentences = len(sentences)
+
+# Calculate the dimensionality of nlp
+embedding_dim = nlp.vocab.vectors_length
+# Initialize the 2D-array with zeros: X - # of row = n_sentences; # of column = embedding_dim
+X = np.zeros((n_sentences, embedding_dim))
+
+# Iterate over the sentences
+for idx, sentence in enumerate(sentences):
+    # Pass each each sentence to the nlp object to create a document
+    doc = nlp(sentence)
+    # Save the document's .vector attribute to the corresponding row in X
+    #  X[idx, :] == idx th row of 2D numpy array X; if want to choose idx th column of X ->  X[:, idx]
+    X[idx, :] = doc.vector
+```
