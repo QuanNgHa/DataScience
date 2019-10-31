@@ -30,6 +30,7 @@ A dictionary called `rules` has already been defined, which matches the followin
 'if (.*)': ["Do you really think it's likely that {0}", 'Do you wish that {0}', 'What do you think about {0}', 'Really--if {0}']}
 ```
 
+### match_rule()
 
 ```Python
 # Define match_rule()
@@ -60,3 +61,46 @@ print(match_rule(rules, "do you remember your last birthday"))
 ```Python
  re.sub('you','me', message)
  ```
+ ### replace_pronouns()
+ ```Python
+ # Define replace_pronouns()
+def replace_pronouns(message):
+
+    message = message.lower()
+    if 'me' in message:
+        # Replace 'me' with 'you'
+        return re.sub('me','you', message)
+    if 'my' in message:
+        # Replace 'my' with 'your'
+        return re.sub('my','your', message)
+    if 'your' in message:
+        # Replace 'your' with 'my'
+        return re.sub('your','my', message)
+    if 'you' in message:
+        # Replace 'you' with 'me'
+        return re.sub('you','me', message)
+ ```
+
+### Put Everything Together:
+```Python
+# Define respond()
+def respond(message):
+    # Call match_rule
+    response, phrase = match_rule(rules, message)
+    if '{0}' in response:
+        # Replace the pronouns in the phrase
+        phrase = replace_pronouns(phrase)
+        # Include the phrase in the response
+        response = response.format(phrase)
+    return response
+
+# Send the messages
+send_message("do you remember your last birthday")
+send_message("do you think humans should be worried about AI")
+
+<script.py> output:
+    USER : do you remember your last birthday
+    BOT : What about my last birthday
+    USER : do you think humans should be worried about AI
+    BOT : No chance
+```
