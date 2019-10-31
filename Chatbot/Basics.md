@@ -223,6 +223,6 @@ for idx, sentence in enumerate(sentences):
     # Pass each each sentence to the nlp object to create a document
     doc = nlp(sentence)
     # Save the document's .vector attribute to the corresponding row in X
-    #  X[idx, :] == idx th row of 2D numpy array X; if want to choose idx th column of X ->  X[:, idx]
+    # X[idx, :] == idx th row of 2D numpy array X; if want to choose idx th column of X ->  X[:, idx]
     X[idx, :] = doc.vector
 ```
