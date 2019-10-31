@@ -172,7 +172,7 @@ def find_name(message):
     # Create a pattern for checking if the keywords occur
     name_keyword = re.compile("name|call")
     # Create a pattern for finding capitalized words - Only First Letter {1} is captialized 
-    name_pattern = re.compile("'[A-Z]{1}[a-z]*'")
+    name_pattern = re.compile("[A-Z]{1}[a-z]*")
     if name_keyword.search(message):
         # Get the matching words in the string
         name_words = name_pattern.findall(message)
@@ -197,9 +197,9 @@ send_message("People call me Cassandra")
 
 <script.py> output:
     USER : my name is David Copperfield
-    BOT : Hi there!
+    BOT : Hello, David Copperfield!
     USER : call me Ishmael
-    BOT : Hi there!
+    BOT : Hello, Ishmael!
     USER : People call me Cassandra
-    BOT : Hi there!
+    BOT : Hello, People Cassandra!
 ```
