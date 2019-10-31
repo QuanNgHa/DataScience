@@ -204,7 +204,7 @@ send_message("People call me Cassandra")
     BOT : Hello, People Cassandra!
 ```
 ### IV. Word vectors with spaCy
-
+Task: create a 2D array X with as many rows as there are sentences in the dataset, where each row is a vector describing that sentence.
 ```Python
 import spacy
 # Load the spacy model: nlp
