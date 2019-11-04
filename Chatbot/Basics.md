@@ -226,3 +226,29 @@ for idx, sentence in enumerate(sentences):
     # X[idx, :] == idx th row of 2D numpy array X; if want to choose idx th column of X ->  X[:, idx]
     X[idx, :] = doc.vector
 ```
+### V. Intent classification with sklearn:
+An array `X` containing vectors describing each of the sentences in the ATIS dataset has been created for you, along with a 1D array y containing the labels. The labels are integers corresponding to the intents in the dataset. For example, label 0 corresponds to the intent atis_flight.
+
+```Python
+# Import SVC
+from sklearn.svm import SVC
+
+# Create a support vector classifier
+clf = SVC(C=1)
+# Fit the classifier using the training data
+clf.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = clf.predict(X_test)
+
+# Count the number of correct predictions
+n_correct = 0
+for i in range(len(y_test)):
+    if y_pred[i] == y_test[i]:
+        n_correct += 1
+
+print("Predicted {0} correctly out of {1} test examples".format(n_correct, len(y_test)))
+
+
+Predicted 162 correctly out of 201 test examples
+```
