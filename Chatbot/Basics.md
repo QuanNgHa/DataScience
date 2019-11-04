@@ -321,3 +321,35 @@ assign_colors(doc)
     item: jeans has color : blue
 
 ```
+### VI. Robust language understanding with Rasa NLU
+
+In this exercise, you'll use Rasa NLU to create an interpreter, which parses incoming user messages and returns a set of entities. Your job is to train an interpreter using the MITIE entity recognition model in Rasa NLU.
+```Python
+# Import necessary modules
+from rasa_nlu.converters import load_data
+from rasa_nlu.config import RasaNLUConfig
+from rasa_nlu.model import Trainer
+
+# Create a dictionary called args with a single key "pipeline" with value "spacy_sklearn".
+args = {"pipeline":"spacy_sklearn"}
+
+# Create a configuration and trainer
+config = RasaNLUConfig(cmdline_args = args)
+trainer = Trainer(config)
+
+# Load the training data
+training_data = load_data("./training_data.json")
+
+# Create an interpreter by training the model
+interpreter = trainer.train(training_data)
+
+# Test the interpreter
+print(interpreter.parse("I'm looking for a Mexican restaurant in the North of town"))
+
+<script.py> output:
+    Fitting 2 folds for each of 6 candidates, totalling 12 fits
+    {'text': "I'm looking for a Mexican restaurant in the North of town", 
+    'intent': {'confidence': 0.6627604390878398, 'name': 'restaurant_search'}, 
+    'entities': [{'end': 25, 'value': 'mexican', 'entity': 'cuisine', 'extractor': 'ner_crf', 'start': 18}, {'end': 49, 'value': 'north', 'entity': 'location', 'extractor': 'ner_crf', 'start': 44}], 
+    'intent_ranking': [{'confidence': 0.6627604390878398, 'name': 'restaurant_search'}, {'confidence': 0.14633725788681204, 'name': 'goodbye'}, {'confidence': 0.09756426473688806, 'name': 'affirm'}, {'confidence': 0.09333803828846025, 'name': 'greet'}]}
+```
