@@ -255,7 +255,6 @@ Predicted 162 correctly out of 201 test examples
 ### VI. Entity extraction: Using spaCy's entity recognizer
 
 In this exercise, you'll use spaCy's built-in entity recognizer to extract names, dates, and organizations from search queries.
-
 ```Python
 import spacy
 
@@ -285,4 +284,40 @@ Output:
 {'ORG': Google, 'DATE': '2010', 'PERSON': Mary}
 ()
 {'ORG': MIT, 'DATE': 1999, 'PERSON': None}
+```
+### Assigning roles using spaCy's parser
+
+In this exercise you'll use spaCy's powerful syntax parser to assign roles to the entities in your users' messages. 
+
+* Functions used from Spacy doc: .ancestors; entity_type(); 
+```Python
+# Iterate over parents in parse tree until an item entity is found
+def find_parent_item(word):
+    # Iterate over the word's ancestors
+    for parent in word.ancestors:
+        # Check for an "item" entity
+        if entity_type(parent) == "item":
+            return parent.text
+    return None
+
+# For all color entities, find their parent item
+def assign_colors(doc):
+    # Iterate over the document
+    for word in doc:
+        # Check for "color" entities
+        if entity_type(word) == "color":
+            # Find the parent
+            item =  find_parent_item(word)
+            print("item: {0} has color : {1}".format(item, word))
+
+# Assign the colors
+# Create the Spacy document
+doc = nlp("let's see that jacket in red and some blue jeans")
+
+assign_colors(doc)
+
+<script.py> output:
+    item: jacket has color : red
+    item: jeans has color : blue
+
 ```
