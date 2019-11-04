@@ -252,3 +252,37 @@ print("Predicted {0} correctly out of {1} test examples".format(n_correct, len(y
 
 Predicted 162 correctly out of 201 test examples
 ```
+### VI. Entity extraction: Using spaCy's entity recognizer
+
+In this exercise, you'll use spaCy's built-in entity recognizer to extract names, dates, and organizations from search queries.
+
+```Python
+import spacy
+
+nlp = spacy.load('en')
+# Define included_entities
+include_entities = ['DATE', 'ORG', 'PERSON']
+
+# Define extract_entities()
+def extract_entities(message):
+    # Create a dict to hold the entities
+    ents = dict.fromkeys(include_entities)
+    
+    # Create a spacy document
+    doc = nlp(message)
+    print(doc.ents)
+    for ent in doc.ents:
+        
+        if ent.label_ in ents:
+            # Save interesting entities
+            ents[ent.label_] = ent.text
+    return ents
+
+print(extract_entities('friends called Mary who have worked at Google since 2010'))
+print(extract_entities('people who graduated from MIT in 1999')
+
+Output:
+{'ORG': Google, 'DATE': '2010', 'PERSON': Mary}
+()
+{'ORG': MIT, 'DATE': 1999, 'PERSON': None}
+```
