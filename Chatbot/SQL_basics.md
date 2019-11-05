@@ -51,3 +51,6 @@ def find_hotels(params):
 find_hotels({"area": "south", "price":"lo"}). 
 Output: [('Cozy Cottage', 'lo', 'south', 2)]
 ```
+
+#### Creating SQL from natural language
+
