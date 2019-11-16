@@ -152,3 +152,98 @@ USER: no that doesn't work for me
 {'intent': {'confidence': 0.0, 'name': 'deny'}, 'entities': [], 'text': "no that doesn't work for me"}
 BOT: Grand Hotel is one option, but I know others too :)
 ```
+### 2. Asking questions & queuing answers
+#### Pending actions
+You can really improve the user experience of your bot by asking the user simple yes or no follow-up questions. One easy way to handle these follow-ups is to define pending actions which get executed as soon as the user says "yes", and wiped if the user says "no".
+
+In this exercise, you're going to define a policy() function which takes the intent as its sole argument and returns two values: The next action to take and a pending action. The policy function should return this pending action when a "yes" or "affirm" intent is returned and should wipe the pending actions if a "no" or "deny" intent is returned.
+
+Here, the interpret(message) function has been defined for you such that if "yes" is in the message, "affirm" is returned, and if "no" is in the message, then "deny" is returned.
+
+```Python
+# Define policy()
+def policy(intent):
+    # Return "do_pending" if the intent is "affirm"
+    if intent == "affirm":
+        return "do_pending", None
+    # Return "Ok" if the intent is "deny"
+    if intent == "deny":
+        return "Ok", None
+    if intent == "order":
+        return "Unfortunately, the Kenyan coffee is currently out of stock, would you like to order the Brazilian beans?", "Alright, I've ordered that for you!"
+        
+# Define send_message()
+def send_message(pending, message):
+    print("USER : {}".format(message))
+    action, pending_action = policy(interpret(message))
+    if action == "do_pending" and pending is not None:
+        print("BOT : {}".format(pending))
+    else:
+        print("BOT : {}".format(action))
+    return pending_action
+    
+# Define send_messages()
+def send_messages(messages):
+    pending = None
+    for msg in messages:
+        pending = send_message(pending, msg)
+
+# Send the messages
+send_messages([
+    "I'd like to order some coffee",
+    "ok yes please"
+])
+<script.py> output:
+    USER : I'd like to order some coffee
+    BOT : Unfortunately, the Kenyan coffee is currently out of stock, would you like to order the Brazilian beans?
+    USER : ok yes please
+    BOT : Alright, I've ordered that for you!
+```
+
+#### Pending state transitions
+You'll often need to briefly deviate from the flow of a conversation, for example to authenticate a user, before returning to the topic of discussion.
+
+In these cases, it's often simpler - and easier to debug - if you save some actions/states as pending rather than adding ever more complicated rules.
+
+Here, you're going to define a policy_rules dictionary, where the keys are tuples of the current state and the received intent, and the values are tuples of the next state, the bot's response, and a state for which to set a pending transition.
+
+```Python
+# Define the states
+INIT=0
+AUTHED=1
+CHOOSE_COFFEE=2
+ORDERED=3
+
+# Define the policy rules
+policy_rules = {
+    (INIT, "order"): (INIT, "you'll have to log in first, what's your phone number?", AUTHED),
+    (INIT, "number"): (AUTHED, "perfect, welcome back!", None),
+    (AUTHED, "order"): (CHOOSE_COFFEE, "would you like Colombian or Kenyan?", None),    
+    (CHOOSE_COFFEE, "specify_coffee"): (ORDERED, "perfect, the beans are on their way!", None)
+}
+
+# Define send_messages()
+def send_messages(messages):
+    state = INIT
+    pending = None
+    for msg in messages:
+        state, pending = send_message(state, pending, msg)
+
+# Send the messages
+send_messages([
+    "I'd like to order some coffee",
+    "555-1234",
+    "kenyan"
+])
+
+
+<script.py> output:
+    USER : I'd like to order some coffee
+    BOT : you'll have to log in first, what's your phone number?
+    USER : 555-1234
+    BOT : perfect, welcome back!
+    BOT : would you like Colombian or Kenyan?
+    USER : kenyan
+    BOT : perfect, the beans are on their way!
+    BOT : would you like Colombian or Kenyan?
+```
