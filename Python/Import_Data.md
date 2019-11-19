@@ -122,10 +122,10 @@ plt.show()
 <img width="420" alt="Screenshot 2019-11-17 at 3 03 40 PM" src="https://user-images.githubusercontent.com/47073386/69004271-76e2e580-094b-11ea-90b7-21c564e678da.png">
 
 #### Working with mixed datatypes 
-mport datasets which have different datatypes in different columns; one column may contain strings and another floats, for example. 
+Import datasets which have different datatypes in different columns; one column may contain strings and another floats, for example. 
 The function np.loadtxt() will freak at this. 
 `np.genfromtxt()`, which can handle such structures. If we pass dtype=None to it, it will figure out what types each column should be.
-
+`np.recfromcsv()` that behaves similarly to np.genfromtxt(), except that its default dtype is None
 Import 'titanic.csv' using the function np.genfromtxt() as follows:
 
 `data = np.genfromtxt('titanic.csv', delimiter=',', names=True, dtype=None)`
@@ -152,4 +152,22 @@ Out[3]: array([0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1,
        1, 1, 0,
 In [6]: data[0]
 Out[6]: (1, 0, 3, b'male', 22., 1, 0, b'A/5 21171', 7.25, b'', b'S')
+```
+```Python
+d = np.recfromcsv('titanic.csv') #only need to pass file to it because it has the defaults delimiter=',' and names=True in addition to dtype=None!
+```
+
+#### Using Pandas to import flat files
+
+```Python
+import pandas as pd
+
+# Read the first 5 rows of the file into a DataFrame: data
+data = pd.read_csv('digits.csv', nrows = 5, header = None)
+
+# Build a numpy array from the DataFrame: data_array
+data_array = data.values
+
+# Print the datatype of data_array to the shell
+print(type(data_array))
 ```
