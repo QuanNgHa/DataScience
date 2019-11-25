@@ -119,3 +119,10 @@ More examples:
 ```Python
 # Create medium: observations with cars_per_cap between 100 and 500
 medium = cars[np.logical_and(cars["cars_per_cap"]>100, cars["cars_per_cap"]<500)]
+
+# 4. Drop:
+## 4.1. Drop Columm:
+* axis : {0 or ‘index’~ rows, 1 or ‘columns’}, default 0
+```Python
+iris.drop(["Species"], axis=1) 
+```
