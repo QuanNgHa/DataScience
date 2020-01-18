@@ -20,9 +20,8 @@ predictions = classifier.predict(input_fn=predict_input_fn)
 ### Common hyperparameters:
 * Epoch: One Epoch is when an ENTIRE dataset is passed forward and backward through the neural network only ONCE.
 * Batch Size: which is the number of training examples (chosen at random) for a single step. For example, the batch size for SGD is 1
-* Steps: which is the total number of training iterations. One step calculates the loss from one batch and uses that value to modify the model's weights once.
-* Iterations: Iterations is the number of batches needed to complete one epoch.
-For example: We can divide the dataset of 2000 examples into batches of 500 then it will take 4 iterations to complete 1 epoch.
+* Steps/Iterations: which is the total number of training iterations. One step calculates the loss from one batch and uses that value to modify the model's weights once. Iterations is the number of batches needed to complete one epoch.
+* For example: We can divide the dataset of 2000 examples into batches of 500 then it will take 4 iterations to complete 1 epoch.
 
 <img width="510" alt="Screenshot 2020-01-19 at 12 13 14 AM" src="https://user-images.githubusercontent.com/47073386/72666790-8c11e880-3a50-11ea-9204-c71a7e80d277.png">
 
