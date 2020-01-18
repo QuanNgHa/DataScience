@@ -15,3 +15,11 @@ classifier.train(input_fn=train_input_fn, steps=2000)
 # Use it to predict.
 predictions = classifier.predict(input_fn=predict_input_fn)
 ```
+
+
+### Epoch vs Batch Size vs Iterations
+* Epoch: One Epoch is when an ENTIRE dataset is passed forward and backward through the neural network only ONCE.
+* Batch Size: Total number of training examples present in a single batch.
+* Iterations: Iterations is the number of batches needed to complete one epoch.
+
+Example: We can divide the dataset of 2000 examples into batches of 500 then it will take 4 iterations to complete 1 epoch.
