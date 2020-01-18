@@ -29,3 +29,13 @@ predictions = classifier.predict(input_fn=predict_input_fn)
 periods, which controls the granularity of reporting. For example, if periods is set to 7 and steps is set to 70, then the exercise will output the loss value every 10 steps (or 7 times). Unlike hyperparameters, we don't expect you to modify the value of periods. Note that modifying periods does not alter what your model learns.
 
 <img width="559" alt="Screenshot 2020-01-19 at 12 14 38 AM" src="https://user-images.githubusercontent.com/47073386/72666826-b06dc500-3a50-11ea-9d94-f145ee5906e5.png">
+
+
+### Synthetic Features and Outliers:
+* Create a synthetic feature that is the ratio of two other features
+* Clip Outliers:  improve the model fit by setting the outlier values of `rooms_per_person` to some reasonable minimum or maximum.
+
+
+   ``` clipped_feature = my_dataframe["my_feature_name"].apply(lambda x: max(x, 0))```
+
+The above `clipped_feature` will have no values less than `0`.
