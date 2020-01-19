@@ -43,3 +43,7 @@ The above `clipped_feature` will have no values less than `0`.
 ### 4. Peril of Overfitting
 An overfit model gets a low loss during training but does a poor job predicting new data. Overfitting is caused by making a model more complex than necessary. 
 `The fundamental tension of machine learning is between fitting our data well, but also fitting the data as simply as possible.`
+
+ * RULE 1: divide your data set into two subsets:
+1) training set—a subset to train a model.
+2) test set—a subset to test the model.
