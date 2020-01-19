@@ -56,3 +56,19 @@ In this improved workflow:
 1. Pick the model that does best on the validation set.
 2. Double-check that model against the test set.
 => This is a better workflow because it creates fewer exposures to the test set.
+
+```Python
+
+#Read Data from csv
+california_housing_dataframe = pd.read_csv("https://download.mlcc.google.com/mledu-datasets/california_housing_train.csv", sep=",")
+
+#<--Randomize the data -->
+#If we don't randomize the data properly before creating training and validation splits, 
+#then we may be in trouble if the data is given to us in some sorted order, which appears to be the case here.
+
+california_housing_dataframe = california_housing_dataframe.reindex(
+    np.random.permutation(california_housing_dataframe.index))
+
+#Slip randomized data into training, validation, & test sets
+
+```
