@@ -1,7 +1,7 @@
 TensorFlow is a computational framework for building machine learning models. TensorFlow provides a variety of different toolkits that allow you to construct models at your preferred level of abstraction. You can use lower-level APIs to build models by defining a series of mathematical operations. Alternatively, you can use higher-level APIs (like tf.estimator) to specify predefined architectures, such as linear regressors or neural networks.
 <img width="717" alt="Screenshot 2020-01-12 at 10 34 52 PM" src="https://user-images.githubusercontent.com/47073386/72220527-756d1c80-358c-11ea-96d0-3c170b69887b.png">
 
-### A Quick Look at the tf.estimator API
+### 1. A Quick Look at the tf.estimator API
 
 ```Python
 import tensorflow as tf
@@ -17,7 +17,7 @@ predictions = classifier.predict(input_fn=predict_input_fn)
 ```
 
 
-### Common hyperparameters:
+### 2. Common hyperparameters:
 * Epoch: One Epoch is when an ENTIRE dataset is passed forward and backward through the neural network only ONCE.
 * Batch Size: which is the number of training examples (chosen at random) for a single step. For example, the batch size for SGD is 1
 * Steps/Iterations: which is the total number of training iterations. One step calculates the loss from one batch and uses that value to modify the model's weights once. Iterations is the number of batches needed to complete one epoch.
@@ -31,7 +31,7 @@ periods, which controls the granularity of reporting. For example, if periods is
 <img width="559" alt="Screenshot 2020-01-19 at 12 14 38 AM" src="https://user-images.githubusercontent.com/47073386/72666826-b06dc500-3a50-11ea-9d94-f145ee5906e5.png">
 
 
-### Synthetic Features and Outliers:
+### 3. Synthetic Features and Outliers:
 * Create a synthetic feature that is the ratio of two other features
 * Clip Outliers:  improve the model fit by setting the outlier values of `rooms_per_person` to some reasonable minimum or maximum.
 
@@ -39,3 +39,7 @@ periods, which controls the granularity of reporting. For example, if periods is
    ``` clipped_feature = my_dataframe["my_feature_name"].apply(lambda x: max(x, 0))```
 
 The above `clipped_feature` will have no values less than `0`.
+
+### 4. Peril of Overfitting
+An overfit model gets a low loss during training but does a poor job predicting new data. Overfitting is caused by making a model more complex than necessary. 
+`The fundamental tension of machine learning is between fitting our data well, but also fitting the data as simply as possible.`
