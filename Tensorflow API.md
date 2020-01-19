@@ -44,6 +44,15 @@ The above `clipped_feature` will have no values less than `0`.
 An overfit model gets a low loss during training but does a poor job predicting new data. Overfitting is caused by making a model more complex than necessary. 
 `The fundamental tension of machine learning is between fitting our data well, but also fitting the data as simply as possible.`
 
- * RULE 1: divide your data set into two subsets:
+ * RULE 1: divide your data set into two subsets: Not good since we might tweak the hyperparameters based on the test sets & willl end up overfitting the test set
 1) training set—a subset to train a model.
 2) test set—a subset to test the model.
+
+* RULE 2: 
+<img width="892" alt="Screenshot 2020-01-19 at 12 29 39 PM" src="https://user-images.githubusercontent.com/47073386/72674910-6a981780-3ab7-11ea-9fa8-4e25912a89d3.png">
+<img width="804" alt="Screenshot 2020-01-19 at 12 30 40 PM" src="https://user-images.githubusercontent.com/47073386/72674915-826f9b80-3ab7-11ea-828d-7d777ae87b92.png">
+
+In this improved workflow:
+1. Pick the model that does best on the validation set.
+2. Double-check that model against the test set.
+=> This is a better workflow because it creates fewer exposures to the test set.
